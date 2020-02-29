@@ -60,13 +60,13 @@ public class MusicSetup {
         }
     }
 
-    private void playNote(short noteNumber, short duration, Context ctx){
+    private void playNote(short noteNumber, short duration){
 
-        soundPool.play(soundIds[2*noteNumber + (duration-5)/5], 1, 1, 1, 0, 1.0f);
+        soundPool.play(soundIds[2 * noteNumber + (duration - 5) / 5], 1, 1, 1, 0, 1.0f);
 
     }
 
-    public void playNoteCloseTo(short noteNumber, short duration, Context ctx){
+    public void playNoteCloseTo(short noteNumber, short duration){
 
         for(short i = 0; i < 6; i++){
             if(goodNote((short) (noteNumber + i))){
@@ -78,7 +78,8 @@ public class MusicSetup {
                 break;
             }
         }
-        playNote(noteNumber, duration, ctx);
+        playNote(noteNumber, duration);
+        Log.v("tag", "" + noteNumber);
     }
 
     public byte getNoteCloseTo(short noteNumber){
@@ -106,7 +107,7 @@ public class MusicSetup {
                 break;
             }
         }
-        playNote(noteNumber, (short) 5, ctx);
+        playNote(noteNumber, (short) 5);
     }
 
 
@@ -141,10 +142,10 @@ public class MusicSetup {
                 Log.v("Case ","1" );
                 while(notesDone < 3){
                     if(inMaj((byte) (pivot + i), this.key )){// if in root major
-                        playNote((byte) (pivot + i), (byte) 10, ctx);
+                        playNote((byte) (pivot + i), (byte) 10);
                         notesDone++;
                     }else if(inMaj((byte) (pivot - i), this.key )){
-                        playNote((byte) (pivot - i), (byte) 10, ctx);
+                        playNote((byte) (pivot - i), (byte) 10);
                         notesDone++;
                     }
                     i++;
@@ -154,10 +155,10 @@ public class MusicSetup {
                 chordRoot = (byte) (key + 5);
                 while(notesDone < 3){
                     if(inMaj((byte) (pivot + i), (byte) ((this.key +  5)%12) )){// if in 4
-                        playNote((byte) (pivot + i), (byte) 10, ctx);
+                        playNote((byte) (pivot + i), (byte) 10);
                         notesDone++;
                     }else if(inMaj((byte) (pivot - i), (byte) ((this.key +  5)%12) )){
-                        playNote((byte) (pivot - i), (byte) 10, ctx);
+                        playNote((byte) (pivot - i), (byte) 10);
                         notesDone++;
                     }
                     i++;
@@ -166,10 +167,10 @@ public class MusicSetup {
                 chordRoot = (byte) (key + 7);
                 while(notesDone < 3){
                     if(inMaj((byte) (pivot + i), (byte) ((this.key +  7)%12) )){// if in 5
-                        playNote((byte) (pivot + i), (byte) 10, ctx);
+                        playNote((byte) (pivot + i), (byte) 10);
                         notesDone++;
                     }else if(inMaj((byte) (pivot - i), (byte) ((this.key +  7)%12))){
-                        playNote((byte) (pivot - i), (byte) 10, ctx);
+                        playNote((byte) (pivot - i), (byte) 10);
                         notesDone++;
                     }
                     i++;
@@ -183,10 +184,10 @@ public class MusicSetup {
                 Log.v("Case ","1" );
                 while(notesDone < 3){
                     if(inMin((byte) (pivot + i), (byte) ((this.key +  4)%12) )){// if in root major
-                        playNote((byte) (pivot + i), (byte) 10, ctx);
+                        playNote((byte) (pivot + i), (byte) 10);
                         notesDone++;
                     }else if(inMin((byte) (pivot - i), (byte) ((this.key +  4)%12) )){
-                        playNote((byte) (pivot - i), (byte) 10, ctx);
+                        playNote((byte) (pivot - i), (byte) 10);
                         notesDone++;
                     }
                     i++;
@@ -196,10 +197,10 @@ public class MusicSetup {
                 chordRoot = (byte) (key + 2);
                 while(notesDone < 3){
                     if(inMin((byte) (pivot + i), (byte) ((this.key +  2)%12) )){// if in 4
-                        playNote((byte) (pivot + i), (byte) 10, ctx);
+                        playNote((byte) (pivot + i), (byte) 10);
                         notesDone++;
                     }else if(inMin((byte) (pivot - i), (byte) ((this.key +  2)%12) )){
-                        playNote((byte) (pivot - i), (byte) 10, ctx);
+                        playNote((byte) (pivot - i), (byte) 10);
                         notesDone++;
                     }
                     i++;
@@ -208,10 +209,10 @@ public class MusicSetup {
                 chordRoot = (byte) (key + 9);
                 while(notesDone < 3){
                     if(inMin((byte) (pivot + i), (byte) ((this.key +  9)%12) )){// if in 5
-                        playNote((byte) (pivot + i), (byte) 10, ctx);
+                        playNote((byte) (pivot + i), (byte) 10);
                         notesDone++;
                     }else if(inMin((byte) (pivot - i), (byte) ((this.key +  9)%12))){
-                        playNote((byte) (pivot - i), (byte) 10, ctx);
+                        playNote((byte) (pivot - i), (byte) 10);
                         notesDone++;
                     }
                     i++;
@@ -262,7 +263,7 @@ public class MusicSetup {
         return false;
     }
 
-    private boolean inMaj(byte n,byte root){
+    private boolean inMaj(byte n, byte root){
 
         if(n > 47 || n < 0){ // out of range
             return false;
@@ -281,7 +282,7 @@ public class MusicSetup {
         return false;
     }
 
-    private boolean inMin(byte n,byte root){
+    private boolean inMin(byte n, byte root){
 
         if(n > 47 || n < 0){ // out of range
             return false;
@@ -300,9 +301,7 @@ public class MusicSetup {
         return false;
     }
 
-    public void setMode(byte m){
+    public void setMode(byte m) {
         mode = m;
     }
-
-
 }

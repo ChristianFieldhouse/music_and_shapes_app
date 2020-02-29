@@ -28,7 +28,7 @@ import javax.microedition.khronos.opengles.GL10;
 import static javax.microedition.khronos.opengles.GL10.GL_UNSIGNED_BYTE;
 
 /**
- * A two-dimensional square for use as a drawn object in OpenGL ES 1.0/1.1.
+ * A three-dimensional cube for use as a drawn object in OpenGL ES 1.0/1.1.
  */
 public class Cube {
 
@@ -41,8 +41,8 @@ public class Cube {
     private Float posX,posY;
 
     // number of coordinates per vertex in this array
-    static final int COORDS_PER_VERTEX = 3;
-    static float squareCoords[] = {
+    private static final int COORDS_PER_VERTEX = 3;
+    private static float squareCoords[] = {
             -0.25f,  0.25f, 0.25f,   // top left
             -0.25f, -0.25f, 0.25f,   // bottom left
             0.25f, -0.25f, 0.25f,   // bottom right
@@ -53,11 +53,16 @@ public class Cube {
             0.25f,  0.25f, -0.25f
     };
 
-    private final short drawOrder[] = { 0, 1, 2, 0, 2, 3, 0, 1, 5, 0, 5, 4, 0, 4, 7, 0, 7, 3}; // order to draw vertices
+    private final short[] drawOrder = {0, 1, 2, 0, 2, 3, 0, 1, 5, 0, 5, 4, 0, 4, 7, 0, 7, 3}; // order to draw vertices
 
     private final short drawOrder2[] = {6, 7, 4, 6, 4, 5, 6, 5, 1, 6, 1, 2, 6, 2, 3, 6, 3, 7};
 
-    float color[] = { 0.0f, 0.709803922f, 0.898039216f, 1.0f };
+    private float[] color0 = {0.0f, 0.709803922f, 0.898039216f, 1.0f};
+    private float[] color1 = {0.0f, 0.209803922f, 0.898039216f, 1.0f};
+    private float[] color2 = {0.0f, 0.709803922f, 0.598039216f, 1.0f};
+    private float[] color3 = {0.0f, 0.209803922f, 0.598039216f, 1.0f};
+    private float[] color4 = {0.5f, 0.709803922f, 0.898039216f, 1.0f};
+    private float[] color5 = {0.5f, 0.209803922f, 0.898039216f, 1.0f};
 
     /**
      * Sets up the drawing object data for use in an OpenGL ES context.
@@ -118,8 +123,8 @@ public class Cube {
 
         // draw the shape
         gl.glColor4f(       // set color
-                color[0], color[1],
-                color[2], color[3]);
+                color0[0], color0[1],
+                color0[2], color0[3]);
         gl.glVertexPointer( // point to vertex data:
                 COORDS_PER_VERTEX,
                 GL10.GL_FLOAT, 0, vertexBuffer);
@@ -133,8 +138,8 @@ public class Cube {
 
 
         gl.glColor4f(       // set color
-                color[1], color[0],
-                color[2], color[3]);
+                color1[1], color1[0],
+                color1[2], color1[3]);
         gl.glVertexPointer( // point to vertex data:
                 COORDS_PER_VERTEX,
                 GL10.GL_FLOAT, 0, vertexBuffer);

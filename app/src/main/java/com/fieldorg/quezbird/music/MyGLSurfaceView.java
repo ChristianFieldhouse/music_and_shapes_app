@@ -65,31 +65,37 @@ public class MyGLSurfaceView extends GLSurfaceView {
         // interested in events where the touch position changed.
 
 
-        float x = e.getX();
+
         float y = e.getY();
+        float x = e.getX();
+
+        //mMusic.playNoteCloseTo((short) (48*(y/getHeight())), (short) 10);
+        //return true;
 
         switch (e.getAction()) {
             case MotionEvent.ACTION_DOWN:
 
-                mMusic.setMode((byte) (Math.round(((float)((System.nanoTime())%2000))/2000)));
-                Log.v("Now Chord ",""+(Math.round(((System.nanoTime()/1000000)%2000)/2000)) );
+                //mMusic.setMode((byte) (Math.round(((float)((System.nanoTime())%2000))/2000)));
+                //Log.v("Now Chord ",""+(Math.round(((System.nanoTime()/1000000)%2000)/2000)) );
 
                 mMusic.setMode((byte) (0));
 
                 mRenderer.addSquare(2*(getWidth()/2 - x)/(getHeight()),2*(getHeight()/2 - y)/(getHeight()));
 
-                mMusic.playNoteCloseTo((short) (48*(y/getHeight())),(short) 5, getContext());
 
 
-                mMusic.playChordCloseTo((byte) (48*(y/getHeight())), getContext());
+
+                //mMusic.playChordCloseTo((byte) (48*(y/getHeight())), getContext());
                 break;
 
             case MotionEvent.ACTION_MOVE:
 
-                if ((System.nanoTime() - lastPlayed)/1000000 > 200){
-                    mMusic.playNoteInChord((short) (48*(y/getHeight())), getContext());
-                    lastPlayed = System.nanoTime();
-                }
+                //if ((System.nanoTime() - lastPlayed)/1000000 > 200){
+                //    mMusic.playNoteInChord((short) (48*(y/getHeight())), getContext());
+                //    lastPlayed = System.nanoTime();
+                //}
+                mMusic.playNoteCloseTo((short) (48*(y/getHeight())),(short) 50);
+                break;
 
 
         }
